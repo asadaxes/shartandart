@@ -1,0 +1,9 @@
+<FilesMatch ".(?:html|php)$">
+SetHandler application/x-httpd-alt-php81
+</FilesMatch>
+
+RewriteEngine on
+
+RewriteCond %{REQUEST_URI} !^public
+
+RewriteRule ^(.*)$ public/$1 [L]
