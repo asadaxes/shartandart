@@ -18,6 +18,8 @@ use App\Http\Controllers\AboutUsController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Front\GeoBDController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +30,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::post('get_district',[GeoBDController::class,'get_district'])->name('get_district');
 Route::get('/category-product/{id}', [HomeController::class, 'productcategory'])->name('category.product');
 Route::get('/sub-category-product/{id}', [HomeController::class, 'subcategoryProduct'])->name('sub.category.product');
 Route::get('/subsub-category-product/{id}', [HomeController::class, 'subsubcategoryProduct'])->name('subsub.category.product');

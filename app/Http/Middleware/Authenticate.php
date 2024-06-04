@@ -13,23 +13,27 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
+//        return $request->expectsJson() ? null : route('user.login');
+//        return $request;
         $client = new Client();
         try {
-            $response = $client->get('http://aaait.tech/api/asad/developerkey');
-            $data = json_decode($response->getBody(), true);
-            $developerKey = $data['developerkey'] ?? null;
-            $predefinedKey = "azizulhaque4584198rita123456789";
-            if ($developerKey === $predefinedKey) {
+//            return 'sarowar';
+//            $response = $client->get('http://aaait.tech/api/asad/developerkey');
+//            $data = json_decode($response->getBody(), true);
+//            $developerKey = $data['developerkey'] ?? null;
+//            $predefinedKey = "azizulhaque4584198rita123456789";
+//            if ($developerKey === $predefinedKey) {
                 if ($request->is('user/dashboard')) {
                     return route('user.login');
                 } elseif ($request->is('admin/dashboard')) {
                     return route('login');
                 } else {
+//                    return 'else';
                     return $request->expectsJson() ? null : route('user.login');
                 }
-            } else {
-                return response()->json(['message' => 'Add Developer Key First'], 401);
-            }
+//            } else {
+//                return response()->json(['message' => 'Add Developer Key First'], 401);
+//            }
         } catch (\Exception $e) {
             logger()->error('Error fetching developer key: ' . $e->getMessage());
             return null;
