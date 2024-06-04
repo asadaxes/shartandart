@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+
 use DB;
+use Devfaysal\BangladeshGeocode\Models\District;
+use Devfaysal\BangladeshGeocode\Models\Division;
 use Illuminate\Http\Request;
 use App\Library\SslCommerz\SslCommerzNotification;
 use App\Models\Checkout;
@@ -14,10 +17,12 @@ class SslCommerzPaymentController extends Controller
 
     public function exampleEasyCheckout($id)
     {
+
         $checkoutdetails = Checkoutdetails::where('checkout_id', $id)->get();
         return view('frontend.order.create', [
             'checkoutdetails' => $checkoutdetails,
             'checkout' => Checkout::find($id),
+            'divisions'=>Division::all(),
         ]);
     }
     public function exampleHostedCheckout()

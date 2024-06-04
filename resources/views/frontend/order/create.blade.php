@@ -5,6 +5,10 @@
 @endsection
 
 @section('style')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -69,6 +73,7 @@
                                 Valid customer name is required.
                             </div>
                         </div>
+
                     </div>
 
                     <div class="mb-3">
@@ -107,17 +112,47 @@
                         <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
                         <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
                     </div>
+                    <div class="mb-3">
+                        <label for="country">Country </label>
+                        <select class="form-control select2 js-example-disabled-results" id="country" name="country" style="width: 100%;">
+                            <option value="bangladesh" selected>Bangladesh</option>
+                        </select>
+{{--                        <select class="form-select " id="js-example-disabled-results" aria-label="Default select example">--}}
+{{--                            <option selected>Open this select menu</option>--}}
+{{--                            <option value="1">One</option>--}}
+{{--                            <option value="2">Two</option>--}}
+{{--                            <option value="3">Three</option>--}}
+{{--                        </select>--}}
+{{--                        <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>--}}
+{{--                        <select class="js-example-disabled-results">--}}
+{{--                            <option value="one">First</option>--}}
+{{--                            <option value="three">Third</option>--}}
+{{--                        </select>--}}
+                    </div>
+
+
 
                     <div class="row">
+
                         <div class="col-md-5 mb-3">
-                            <label for="country">Country</label>
-                            <select class="custom-select d-block w-100" id="country" required style="height: 40px;
-                        font-size: 15px;">
-                                <option value="">Choose...</option>
-                                <option value="Bangladesh">Bangladesh</option>
+                            <label for="District">Divison</label>
+                            <select class="form-control  js-example-disabled-results" id="divison" name="divison"  style="width: 100%;">
+                                <option value="">select one</option>
+                                @foreach($divisions as $division)
+                                    <option value="{{$division->id}}">{{$division->name}}</option>
+                                @endforeach
                             </select>
                             <div class="invalid-feedback">
-                                Please select a valid country.
+                                Please select a valid divison.
+                            </div>
+                        </div>
+                        <div class="col-md-5 mb-3">
+                            <label for="District">District</label>
+                            <select class="form-control  js-example-disabled-results" id="district" name="district"  style="width: 100%;">
+                                <option value="">select</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select a valid divison.
                             </div>
                         </div>
                         <div class="col-md-4 mb-3">
@@ -131,6 +166,7 @@
                                 Please provide a valid state.
                             </div>
                         </div>
+
                         <div class="col-md-3 mb-3">
                             <label for="zip">Zip</label>
                             <input type="text" class="form-control" id="zip" placeholder="" required>
@@ -169,10 +205,59 @@
 
 @section('script')
 
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+
+{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>--}}
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
             integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
             crossorigin="anonymous"></script>
 
+    <script>
+        var $disabledResults = $(".js-example-disabled-results");
+        $disabledResults.select2();
+
+    </script>
+
+    <script>
+
+        $('#divison').on('change', function () {
+            var divison = $(this).val();
+            // console.log("divison");
+            {{--$.ajax({--}}
+            {{--    url: "{{ route('get_district',$division) }}",--}}
+            {{--    // type: "get",--}}
+            {{--    method:"get",--}}
+            {{--    --}}{{--data: {--}}
+            {{--    --}}{{--    divison_id: divison,--}}
+            {{--    --}}{{--    _token: "{{ csrf_token() }}"--}}
+            {{--    --}}{{--},--}}
+            {{--    success: function (response) {--}}
+            {{--        console.log(response);--}}
+            {{--        // var options = '<option value="">Select Sub Category</option>';--}}
+            {{--        // response.forEach(element => {--}}
+            {{--        //     options += '<option value="' + element.id + '">' + element.name + '</option>';--}}
+            {{--        // });--}}
+            {{--        // $('#subcategory_id').html(options);--}}
+            {{--    }--}}
+            {{--});--}}
+
+            $.ajax({
+                url: "{{ route('get_district') }}",
+                type: "POST",
+                data: {
+                    category_id: divison,
+                    _token: "{{ csrf_token() }}"
+                },
+                success: function (response){
+                    console.log('saorear');
+                }
+            });
+        });
+    </script>
 
     <!-- If you want to use the popup integration, -->
     <script>
