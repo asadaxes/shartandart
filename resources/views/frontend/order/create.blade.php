@@ -136,7 +136,7 @@
 
                         <div class="col-md-5 mb-3">
                             <label for="District">Divison</label>
-                            <select class="form-control  js-example-disabled-results" id="divison" name="divison"  style="width: 100%;">
+                            <select class="form-control select2 " id="divison_id" name="divison"  style="width: 100%;">
                                 <option value="">select one</option>
                                 @foreach($divisions as $division)
                                     <option value="{{$division->id}}">{{$division->name}}</option>
@@ -223,8 +223,10 @@
     </script>
 
     <script>
+        document.ready
 
-        $('#divison').on('change', function () {
+        $('#divison_id').on('change', function () {
+            console.log('sarowar');
             var divison = $(this).val();
             // console.log("divison");
             {{--$.ajax({--}}
@@ -256,6 +258,14 @@
                     console.log('saorear');
                 }
             });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#divison_id').on('change',function (){
+                console.log('sarowar123');
+            })
+
         });
     </script>
 
