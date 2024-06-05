@@ -31,7 +31,7 @@ use App\Http\Controllers\Front\GeoBDController;
 |
 */
 
-Route::post('get_district',[GeoBDController::class,'get_district'])->name('get_district');
+Route::get('get_district/{id}',[GeoBDController::class,'get_district'])->name('get_district');
 Route::get('/category-product/{id}', [HomeController::class, 'productcategory'])->name('category.product');
 Route::get('/sub-category-product/{id}', [HomeController::class, 'subcategoryProduct'])->name('sub.category.product');
 Route::get('/subsub-category-product/{id}', [HomeController::class, 'subsubcategoryProduct'])->name('subsub.category.product');
@@ -105,7 +105,7 @@ Route::get('/checkout/{id}', [SslCommerzPaymentController::class, 'exampleEasyCh
 Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
 
 Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
-Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax'])->name('pay-vai-ajax');
 
 Route::post('/success', [SslCommerzPaymentController::class, 'success']);
 Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);

@@ -120,10 +120,11 @@
                     <div class="latest-items-active">
 
                         @foreach($products as $product)
-                            <div class="properties pb-30">
+                            <div class="properties pb-30 m-3">
                                 <div class="properties-card">
-                                    <div class="properties-img">
-                                        <a href="{{ route('product_view') }}"><img src="frontend/assets/img/gallery/latest1.jpg" alt></a>
+                                    <div class="properties-img" >
+{{--                                        <a href="{{ route('product_view') }}"><img src="frontend/assets/img/gallery/latest1.jpg" alt></a>--}}
+                                        <a href="{{ route('product_view') }}"><img src="{{asset($product->image)}}"  ></a>
                                         <div class="socal_icon">
                                             <a href="#" onclick="addToCart({{ $product->id }}, '{{ $product->name }}', {{ $product->price }}) "> <i class="ti-shopping-cart"></i></a>
                                             <a href="#" onclick="addToWishlist({{ $product->id }}, '{{ $product->name }}', {{ $product->price }}) "><i class="ti-heart"></i></a>
@@ -131,10 +132,10 @@
                                         </div>
                                     </div>
                                     <div class="properties-caption properties-caption2">
-                                        <h3><a href="{{ route('product_view') }}">Cashmere Tank + Bag</a></h3>
+                                        <h3><a href="{{ route('product_view') }}">{{$product->name}}</a></h3>
                                         <div class="properties-footer">
                                             <div class="price">
-                                                <span>$98.00 <span>$120.00</span></span>
+                                                <span>{{$product->sale_price}} <span>{{$product->regular_price}}</span></span>
                                             </div>
                                         </div>
                                     </div>
