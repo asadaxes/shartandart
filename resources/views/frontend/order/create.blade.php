@@ -38,7 +38,6 @@
 
 @section('content')
     <div class="container">
-
         <div class="row mt-5" style="background: #fff;padding: 32px;">
             <div class="col-md-4 order-md-2">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -63,7 +62,7 @@
             </div>
             <div class="col-md-8 order-md-1">
                 <h4 class="mb-3">Billing address</h4>
-                <form method="POST" class="needs-validation" novalidate>
+                <form method="POST"   class="needs-validation" novalidate>
                     <div class="row">
                         <div class="col-md-12">
                             <label for="firstName">Full name</label>
@@ -73,7 +72,6 @@
                                 Valid customer name is required.
                             </div>
                         </div>
-
                     </div>
 
                     <div class="mb-3">
@@ -99,18 +97,18 @@
                         </div>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="address">Address</label>
-                        <input type="text" class="form-control" id="address" placeholder="1234 Main St"
-                               required>
-                        <div class="invalid-feedback">
-                            Please enter your shipping address.
-                        </div>
-                    </div>
+{{--                    <div class="mb-3">--}}
+{{--                        <label for="address">Address</label>--}}
+{{--                        <input type="text" class="form-control" id="address" placeholder="1234 Main St"--}}
+{{--                               required>--}}
+{{--                        <div class="invalid-feedback">--}}
+{{--                            Please enter your shipping address.--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
                     <div class="mb-3">
-                        <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>
-                        <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+                        <label for="address2">Address  <span class="text-muted">(Optional)</span></label>
+                        <input type="text" class="form-control" id="address" name="address" placeholder="Apartment or suite">
                     </div>
                     <div class="mb-3">
                         <label for="country">Country </label>
@@ -136,10 +134,10 @@
 
                         <div class="col-md-5 mb-3">
                             <label for="District">Divison</label>
-                            <select class="form-control select2 " id="divison_id" name="divison"  style="width: 100%;">
+                            <select class="form-control" id="division_id" name="divison" style="width: 100%;">
                                 <option value="">select one</option>
                                 @foreach($divisions as $division)
-                                    <option value="{{$division->id}}">{{$division->name}}</option>
+                                    <option value="{{$division->id}}">{{$division->bn_name}}</option>
                                 @endforeach
                             </select>
                             <div class="invalid-feedback">
@@ -148,32 +146,59 @@
                         </div>
                         <div class="col-md-5 mb-3">
                             <label for="District">District</label>
-                            <select class="form-control  js-example-disabled-results" id="district" name="district"  style="width: 100%;">
-                                <option value="">select</option>
+                            <select class="form-control" id="district_id" name="district"  style="width: 100%;">
+                                <option value="">select one</option>
+                                @foreach($districts as $district)
+                                    <option value="{{$district->id}}">{{$district->bn_name}}</option>
+                                @endforeach
                             </select>
                             <div class="invalid-feedback">
                                 Please select a valid divison.
                             </div>
                         </div>
-                        <div class="col-md-4 mb-3">
-                            <label for="state">State</label>
-                            <select class="custom-select d-block w-100" id="state" required style="height: 40px;
-                        font-size: 15px;">
-                                <option value="">Choose...</option>
-                                <option value="Dhaka">Dhaka</option>
+                        <div class="col-md-5 mb-3">
+                            <label for="Upazila">Upazila</label>
+                            <select class="form-control" id="upazila_id" name="upazila"  style="width: 100%;">
+                                <option value="">select one</option>
+                                @foreach($upazilas as $upazila)
+                                    <option value="{{$upazila->id}}">{{$upazila->bn_name}}</option>
+                                @endforeach
                             </select>
                             <div class="invalid-feedback">
-                                Please provide a valid state.
+                                Please select a valid divison.
                             </div>
                         </div>
-
-                        <div class="col-md-3 mb-3">
-                            <label for="zip">Zip</label>
-                            <input type="text" class="form-control" id="zip" placeholder="" required>
+                        <div class="col-md-5 mb-3">
+                            <label for="Unioun">Unioun</label>
+                            <select class="form-control" id="union_id" name="union"  style="width: 100%;">
+                                <option value="">select one</option>
+                                @foreach($unions as $union)
+                                    <option value="{{$union->id}}">{{$union->bn_name}}</option>
+                                @endforeach
+                            </select>
                             <div class="invalid-feedback">
-                                Zip code required.
+                                Please select a valid divison.
                             </div>
                         </div>
+{{--                        <div class="col-md-4 mb-3">--}}
+{{--                            <label for="state">State</label>--}}
+{{--                            <select class="custom-select d-block w-100" id="state" required style="height: 40px;--}}
+{{--                        font-size: 15px;">--}}
+{{--                                <option value="">Choose...</option>--}}
+{{--                                <option value="Dhaka">Dhaka</option>--}}
+{{--                            </select>--}}
+{{--                            <div class="invalid-feedback">--}}
+{{--                                Please provide a valid state.--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+
+{{--                        <div class="col-md-3 mb-3">--}}
+{{--                            <label for="zip">Zip</label>--}}
+{{--                            <input type="text" class="form-control" id="zip" placeholder="" required>--}}
+{{--                            <div class="invalid-feedback">--}}
+{{--                                Zip code required.--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                     </div>
                     <hr class="mb-4">
                     <div class="custom-control custom-checkbox">
@@ -190,7 +215,7 @@
                         <label class="custom-control-label" for="save-info">Save this information for next time</label>
                     </div>
                     <hr class="mb-4">
-                    <button class="btn btn-primary btn-lg btn-block" id="sslczPayBtn"
+                    <button  class="btn btn-primary btn-lg btn-block" id="sslczPayBtn"
                             token="if you have any token validation"
                             postdata="your javascript arrays or objects which requires in backend"
                             order="If you already have the transaction generated for current order"
@@ -204,100 +229,106 @@
 @endsection
 
 @section('script')
+{{--    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>--}}
+{{--    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>--}}
+<script>
+    $(document).ready(function() {
+        $('#division_id').select2();
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+{{--<script>--}}
+{{--    $(document).ready(function(){--}}
+{{--        $('#division_id').change(function(){--}}
+{{--            var divisionId = $(this).val();--}}
+{{--            if (divisionId) {--}}
+{{--                $.ajax({--}}
+{{--                    url: "{{ url('/get_district') }}/"+divisionId,--}}
+{{--                    type: 'get',--}}
+{{--                    --}}{{--data: {--}}
+{{--                        --}}{{--    _token: '{{ csrf_token() }}',--}}
+{{--                        --}}{{--    division_id: divisionId--}}
+{{--                        --}}{{--},--}}
+{{--                    dataType: 'json',--}}
+{{--                    success: function(response) {--}}
+{{--                        // var d =$('select[name="district_id"]').empty();--}}
+{{--                        // $.each(data, function(key, value){--}}
+{{--                        //     $('select[name="district_id"]').append('<option value="'+ value.id +'">' + value.district_name + '</option>');--}}
+{{--                        // });--}}
+{{--                        var options = '<option value="">Select District</option>';--}}
+{{--                        $.each(response, function(key, value) {--}}
+{{--                            options += '<option value="' + value.id + '">' + value.name + '</option>';--}}
+{{--                        });--}}
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+{{--                        $('#district_id').html(options);--}}
+{{--                        console.log(options);--}}
+{{--                    },--}}
+
+{{--                    error: function(xhr, status, error) {--}}
+{{--                        console.error(xhr.responseText);--}}
+{{--                    }--}}
+{{--                });--}}
+{{--            } else {--}}
+{{--                $('#district_id').html('<option value="">Select District</option>');--}}
+{{--            }--}}
+{{--        });--}}
+{{--    });--}}
+{{--</script>--}}
 
 
-{{--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>--}}
+<script>
+    (function (window, document) {
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"></script>
+        // var loader = function () {
+        //     var script = document.createElement("script"), tag = document.getElementsByTagName("script")[0];
+        //     script.src = "https://seamless-epay.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7);
+        //     tag.parentNode.insertBefore(script, tag);
+        // };
+        //
+        // window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+    // })(window, document);
+        var loader = function () {
+            var script = document.createElement("script"), tag = document.getElementsByTagName("script")[0];
+            // script.src = "https://seamless-epay.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7); // USE THIS FOR LIVE
+            script.src = "https://sandbox.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7); // USE THIS FOR SANDBOX
+            tag.parentNode.insertBefore(script, tag);
+        };
 
-    <script>
-        var $disabledResults = $(".js-example-disabled-results");
-        $disabledResults.select2();
+        window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
 
-    </script>
+        $('#sslczPayBtn').on('click', function() {
+            var obj = {
+                cus_name: 'sarowar',
+                cus_phone: $('#mobile').val(),
+                cus_email: $('#email').val(),
+                cus_addr1: $('#address').val(),
+                amount: $('#total_amount').val(),
+                cus_city: "dhaka",
+                cus_country: $('#country').val(),
+                cus_postcode:"3500",
+                checkout_id: $('#checkout_id').val(),
+                // division_id: $('#division_id').val(),
+                // district_id: $('#district_id').val(),
+                // upazila_id: $('#upazila_id').val(),
+                // union_id: $('#union_id').val(),
 
-    <script>
-        document.ready
-
-        $('#divison_id').on('change', function () {
-            console.log('sarowar');
-            var divison = $(this).val();
-            // console.log("divison");
-            {{--$.ajax({--}}
-            {{--    url: "{{ route('get_district',$division) }}",--}}
-            {{--    // type: "get",--}}
-            {{--    method:"get",--}}
-            {{--    --}}{{--data: {--}}
-            {{--    --}}{{--    divison_id: divison,--}}
-            {{--    --}}{{--    _token: "{{ csrf_token() }}"--}}
-            {{--    --}}{{--},--}}
-            {{--    success: function (response) {--}}
-            {{--        console.log(response);--}}
-            {{--        // var options = '<option value="">Select Sub Category</option>';--}}
-            {{--        // response.forEach(element => {--}}
-            {{--        //     options += '<option value="' + element.id + '">' + element.name + '</option>';--}}
-            {{--        // });--}}
-            {{--        // $('#subcategory_id').html(options);--}}
-            {{--    }--}}
-            {{--});--}}
-
-            $.ajax({
-                url: "{{ route('get_district') }}",
-                type: "POST",
-                data: {
-                    category_id: divison,
-                    _token: "{{ csrf_token() }}"
-                },
-                success: function (response){
-                    console.log('saorear');
-                }
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function () {
-            $('#divison_id').on('change',function (){
-                console.log('sarowar123');
-            })
-
-        });
-    </script>
-
-    <!-- If you want to use the popup integration, -->
-    <script>
-        (function (window, document) {
-            var loader = function () {
-                var script = document.createElement("script"), tag = document.getElementsByTagName("script")[0];
-                // script.src = "https://seamless-epay.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7); // USE THIS FOR LIVE
-                script.src = "https://sandbox.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7); // USE THIS FOR SANDBOX
-                tag.parentNode.insertBefore(script, tag);
             };
+            $(this).prop('postdata', obj);
 
-            window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
 
-            $('#sslczPayBtn').on('click', function () {
-                var obj = {
-                    cus_name: $('#customer_name').val(),
-                    cus_phone: $('#mobile').val(),
-                    cus_email: $('#email').val(),
-                    cus_addr1: $('#address').val(),
-                    amount: $('#total_amount').val(),
-                    cus_addr2: $('#address2').val(),
-                    cus_city: $('#state').val(),
-                    cus_country: $('#country').val(),
-                    cus_postcode: $('#zip').val(),
-                    checkout_id: $('#checkout_id').val()
+            // obj.cus_name = $('#customer_name').val();
+            // obj.cus_phone = $('#mobile').val();
+            // obj.cus_email = $('#email').val();
+            // obj.cus_addr1 = $('#address').val();
+            // obj.amount = $('#total_amount').val();
+            //
+            // $('#sslczPayBtn').prop('postdata', obj);
+        });
+    })(window, document);
+</script>
 
-                };
-                console.log(obj);
-                $(this).prop('postdata', obj);
-            });
-        })(window, document);
-    </script>
+
+
 @endsection

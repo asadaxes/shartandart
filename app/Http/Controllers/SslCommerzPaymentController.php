@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use DB;
 use Devfaysal\BangladeshGeocode\Models\District;
 use Devfaysal\BangladeshGeocode\Models\Division;
+use Devfaysal\BangladeshGeocode\Models\Union;
+use Devfaysal\BangladeshGeocode\Models\Upazila;
 use Illuminate\Http\Request;
 use App\Library\SslCommerz\SslCommerzNotification;
 use App\Models\Checkout;
@@ -23,6 +25,9 @@ class SslCommerzPaymentController extends Controller
             'checkoutdetails' => $checkoutdetails,
             'checkout' => Checkout::find($id),
             'divisions'=>Division::all(),
+            'districts'=>District::all(),
+            'upazilas'=>Upazila::all(),
+            'unions'=>Union::all(),
         ]);
     }
     public function exampleHostedCheckout()
@@ -97,14 +102,20 @@ class SslCommerzPaymentController extends Controller
 
     public function payViaAjax(Request $request)
     {
+//        return $request;
         $cart_data = json_decode($request->cart_json, true);
+//        return $cart_data;
+//        $divison=Division::find($cart_data['division_id'])->bn_name;
+//        $district=District::find($cart_data['district_id'])->bn_name;
+//        $upazila=Upazila::find($cart_data['upazila_id'])->bn_name;
+//        $union=Union::find($cart_data['union_id'])->bn_name;
         $cus_name = $cart_data['cus_name'];
         $cus_phone = $cart_data['cus_phone'];
         $cus_email = $cart_data['cus_email'];
         $cus_addr1 = $cart_data['cus_addr1'];
         $amount = $cart_data['amount'];
         $checkout_id = $cart_data['checkout_id'];
-        $cus_addr2 = $cart_data['cus_addr2'];
+        $cus_addr2 = " ";
         $cus_city = $cart_data['cus_city'];
         $cus_country = $cart_data['cus_country'];
         $cus_postcode = $cart_data['cus_postcode'];
@@ -148,7 +159,7 @@ class SslCommerzPaymentController extends Controller
         $post_data['value_c'] = "ref003";
         $post_data['value_d'] = "ref004";
 
-
+//return $post_data;
         #Before  going to initiate the payment order status need to update as Pending.
         $update_product = DB::table('orders')
             ->where('transaction_id', $post_data['tran_id'])
