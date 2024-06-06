@@ -20,6 +20,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Front\GeoBDController;
 
+use App\Http\Controllers\Front\CheckoutController;
+use App\Http\Controllers\Front\PaymentController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -102,16 +105,26 @@ Route::get('/auth/google/callback', [SocialloginController::class, 'handleGoogle
 
 //ssl commrcee
 Route::get('/checkout/{id}', [SslCommerzPaymentController::class, 'exampleEasyCheckout'])->name('checkout');
-Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+//Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+//
+//Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
+//Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax'])->name('pay-vai-ajax');
+//
+//Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+//Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+//Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+//
+//Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
 
-Route::post('/pay', [SslCommerzPaymentController::class, 'index']);
-Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax'])->name('pay-vai-ajax');
+Route::get('checkout/{id}',[CheckoutController::class,'checkout'])->name('checkout');
+Route::post('create_checkout',[CheckoutController::class,'create_checkout'])->name('create_checkout');
 
-Route::post('/success', [SslCommerzPaymentController::class, 'success']);
-Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
-Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+Route::post('sslcommerz/success',[PaymentController::class,'success'])->name('payment.success');
+Route::post('sslcommerz/failure','PaymentController@failure')->name('payment.failure');
+Route::post('sslcommerz/cancel','PaymentController@cancel')->name('sslc.cancel');
+Route::post('sslcommerz/ipn','PaymentController@ipn')->name('payment.ipn');
 
-Route::post('/ipn', [SslCommerzPaymentController::class, 'ipn']);
+
 
 Route::get('/clear-cache', function () {
     Artisan::call('optimize:clear');
