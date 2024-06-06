@@ -62,7 +62,12 @@
             </div>
             <div class="col-md-8 order-md-1">
                 <h4 class="mb-3">Billing address</h4>
-                <form method="POST"   class="needs-validation" novalidate>
+                <form action="{{route('create_checkout')}}" method="post" class="needs-validation" novalidate>
+                    @csrf
+
+
+                    {{--                </form>--}}
+                    {{--                <form method="get"   class="needs-validation"  >--}}
                     <div class="row">
                         <div class="col-md-12">
                             <label for="firstName">Full name</label>
@@ -97,15 +102,6 @@
                         </div>
                     </div>
 
-{{--                    <div class="mb-3">--}}
-{{--                        <label for="address">Address</label>--}}
-{{--                        <input type="text" class="form-control" id="address" placeholder="1234 Main St"--}}
-{{--                               required>--}}
-{{--                        <div class="invalid-feedback">--}}
-{{--                            Please enter your shipping address.--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-
                     <div class="mb-3">
                         <label for="address2">Address  <span class="text-muted">(Optional)</span></label>
                         <input type="text" class="form-control" id="address" name="address" placeholder="Apartment or suite">
@@ -115,17 +111,7 @@
                         <select class="form-control select2 js-example-disabled-results" id="country" name="country" style="width: 100%;">
                             <option value="bangladesh" selected>Bangladesh</option>
                         </select>
-{{--                        <select class="form-select " id="js-example-disabled-results" aria-label="Default select example">--}}
-{{--                            <option selected>Open this select menu</option>--}}
-{{--                            <option value="1">One</option>--}}
-{{--                            <option value="2">Two</option>--}}
-{{--                            <option value="3">Three</option>--}}
-{{--                        </select>--}}
-{{--                        <label for="address2">Address 2 <span class="text-muted">(Optional)</span></label>--}}
-{{--                        <select class="js-example-disabled-results">--}}
-{{--                            <option value="one">First</option>--}}
-{{--                            <option value="three">Third</option>--}}
-{{--                        </select>--}}
+
                     </div>
 
 
@@ -180,25 +166,25 @@
                                 Please select a valid divison.
                             </div>
                         </div>
-{{--                        <div class="col-md-4 mb-3">--}}
-{{--                            <label for="state">State</label>--}}
-{{--                            <select class="custom-select d-block w-100" id="state" required style="height: 40px;--}}
-{{--                        font-size: 15px;">--}}
-{{--                                <option value="">Choose...</option>--}}
-{{--                                <option value="Dhaka">Dhaka</option>--}}
-{{--                            </select>--}}
-{{--                            <div class="invalid-feedback">--}}
-{{--                                Please provide a valid state.--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
+                        {{--                        <div class="col-md-4 mb-3">--}}
+                        {{--                            <label for="state">State</label>--}}
+                        {{--                            <select class="custom-select d-block w-100" id="state" required style="height: 40px;--}}
+                        {{--                        font-size: 15px;">--}}
+                        {{--                                <option value="">Choose...</option>--}}
+                        {{--                                <option value="Dhaka">Dhaka</option>--}}
+                        {{--                            </select>--}}
+                        {{--                            <div class="invalid-feedback">--}}
+                        {{--                                Please provide a valid state.--}}
+                        {{--                            </div>--}}
+                        {{--                        </div>--}}
 
-{{--                        <div class="col-md-3 mb-3">--}}
-{{--                            <label for="zip">Zip</label>--}}
-{{--                            <input type="text" class="form-control" id="zip" placeholder="" required>--}}
-{{--                            <div class="invalid-feedback">--}}
-{{--                                Zip code required.--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
+                        {{--                        <div class="col-md-3 mb-3">--}}
+                        {{--                            <label for="zip">Zip</label>--}}
+                        {{--                            <input type="text" class="form-control" id="zip" placeholder="" required>--}}
+                        {{--                            <div class="invalid-feedback">--}}
+                        {{--                                Zip code required.--}}
+                        {{--                            </div>--}}
+                        {{--                        </div>--}}
                     </div>
                     <hr class="mb-4">
                     <div class="custom-control custom-checkbox">
@@ -215,12 +201,14 @@
                         <label class="custom-control-label" for="save-info">Save this information for next time</label>
                     </div>
                     <hr class="mb-4">
-                    <button  class="btn btn-primary btn-lg btn-block" id="sslczPayBtn"
-                            token="if you have any token validation"
-                            postdata="your javascript arrays or objects which requires in backend"
-                            order="If you already have the transaction generated for current order"
-                            endpoint="{{ url('/pay-via-ajax') }}"> Pay Now
-                    </button>
+
+                    <button type="submit" class="btn btn-danger">Pay NOw</button>
+{{--                    <button type="submit" class="btn btn-primary btn-lg btn-block" id="sslczPayBtn"--}}
+{{--                            token="if you have any token validation"--}}
+{{--                            postdata="your javascript arrays or objects which requires in backend"--}}
+{{--                            order="If you already have the transaction generated for current order"--}}
+{{--                            endpoint="{{ url('/pay-via-ajax') }}"> Pay Now--}}
+{{--                    </button>--}}
                 </form>
             </div>
         </div>
@@ -278,56 +266,56 @@
 {{--</script>--}}
 
 
-<script>
-    (function (window, document) {
+{{--<script>--}}
+{{--    (function (window, document) {--}}
 
-        // var loader = function () {
-        //     var script = document.createElement("script"), tag = document.getElementsByTagName("script")[0];
-        //     script.src = "https://seamless-epay.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7);
-        //     tag.parentNode.insertBefore(script, tag);
-        // };
-        //
-        // window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
-    // })(window, document);
-        var loader = function () {
-            var script = document.createElement("script"), tag = document.getElementsByTagName("script")[0];
-            // script.src = "https://seamless-epay.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7); // USE THIS FOR LIVE
-            script.src = "https://sandbox.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7); // USE THIS FOR SANDBOX
-            tag.parentNode.insertBefore(script, tag);
-        };
+{{--        // var loader = function () {--}}
+{{--        //     var script = document.createElement("script"), tag = document.getElementsByTagName("script")[0];--}}
+{{--        //     script.src = "https://seamless-epay.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7);--}}
+{{--        //     tag.parentNode.insertBefore(script, tag);--}}
+{{--        // };--}}
+{{--        //--}}
+{{--        // window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);--}}
+{{--    // })(window, document);--}}
+{{--        var loader = function () {--}}
+{{--            var script = document.createElement("script"), tag = document.getElementsByTagName("script")[0];--}}
+{{--            // script.src = "https://seamless-epay.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7); // USE THIS FOR LIVE--}}
+{{--            script.src = "https://sandbox.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7); // USE THIS FOR SANDBOX--}}
+{{--            tag.parentNode.insertBefore(script, tag);--}}
+{{--        };--}}
 
-        window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+{{--        window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);--}}
 
-        $('#sslczPayBtn').on('click', function() {
-            var obj = {
-                cus_name: 'sarowar',
-                cus_phone: $('#mobile').val(),
-                cus_email: $('#email').val(),
-                cus_addr1: $('#address').val(),
-                amount: $('#total_amount').val(),
-                cus_city: "dhaka",
-                cus_country: $('#country').val(),
-                cus_postcode:"3500",
-                checkout_id: $('#checkout_id').val(),
-                // division_id: $('#division_id').val(),
-                // district_id: $('#district_id').val(),
-                // upazila_id: $('#upazila_id').val(),
-                // union_id: $('#union_id').val(),
+{{--        $('#sslczPayBtn').on('click', function() {--}}
+{{--            var obj = {--}}
+{{--                cus_name: 'sarowar',--}}
+{{--                cus_phone: $('#mobile').val(),--}}
+{{--                cus_email: $('#email').val(),--}}
+{{--                cus_addr1: $('#address').val(),--}}
+{{--                amount: $('#total_amount').val(),--}}
+{{--                cus_city: "dhaka",--}}
+{{--                cus_country: $('#country').val(),--}}
+{{--                cus_postcode:"3500",--}}
+{{--                checkout_id: $('#checkout_id').val(),--}}
+{{--                // division_id: $('#division_id').val(),--}}
+{{--                // district_id: $('#district_id').val(),--}}
+{{--                // upazila_id: $('#upazila_id').val(),--}}
+{{--                // union_id: $('#union_id').val(),--}}
 
-            };
-            $(this).prop('postdata', obj);
+{{--            };--}}
+{{--            $(this).prop('postdata', obj);--}}
 
 
-            // obj.cus_name = $('#customer_name').val();
-            // obj.cus_phone = $('#mobile').val();
-            // obj.cus_email = $('#email').val();
-            // obj.cus_addr1 = $('#address').val();
-            // obj.amount = $('#total_amount').val();
-            //
-            // $('#sslczPayBtn').prop('postdata', obj);
-        });
-    })(window, document);
-</script>
+{{--            // obj.cus_name = $('#customer_name').val();--}}
+{{--            // obj.cus_phone = $('#mobile').val();--}}
+{{--            // obj.cus_email = $('#email').val();--}}
+{{--            // obj.cus_addr1 = $('#address').val();--}}
+{{--            // obj.amount = $('#total_amount').val();--}}
+{{--            //--}}
+{{--            // $('#sslczPayBtn').prop('postdata', obj);--}}
+{{--        });--}}
+{{--    })(window, document);--}}
+{{--</script>--}}
 
 
 
