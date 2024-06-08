@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/img/icon/favicon.png') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/assets/img/icon/logo.jpg') }}">
     @include('frontend.include.assets.css')
     <title>@yield('title') | Shirt & Art</title>
 </head>

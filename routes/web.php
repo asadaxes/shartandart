@@ -36,10 +36,11 @@ use App\Http\Controllers\Front\PaymentController;
 
 Route::get('get_district/{id}',[GeoBDController::class,'get_district'])->name('get_district');
 Route::get('/category-product/{id}', [HomeController::class, 'productcategory'])->name('category.product');
-Route::get('/sub-category-product/{id}', [HomeController::class, 'subcategoryProduct'])->name('sub.category.product');
+//Route::get('/sub-category-product/{id}', [HomeController::class, 'subcategoryProduct'])->name('sub.category.product');
+Route::post('/sub-category-product', [HomeController::class, 'subcategoryProduct'])->name('sub.category.product');
 Route::get('/subsub-category-product/{id}', [HomeController::class, 'subsubcategoryProduct'])->name('subsub.category.product');
 Route::get('/product-detail/{id}', [HomeController::class, 'productdetail'])->name('product.detail');
-Route::get('/product-category/{id}', [HomeController::class, 'productcategory'])->name('product.category');
+Route::get('/product-category/{id}/{subid?}', [HomeController::class, 'productcategory'])->name('product.category');
 Route::get('/offer', [OfferController::class, 'index'])->name('offer');
 Route::get('/offer-details/{id}', [OfferController::class, 'details'])->name('offer.details');
 
