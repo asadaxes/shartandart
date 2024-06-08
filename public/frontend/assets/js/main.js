@@ -1,6 +1,6 @@
 (function ($)
     { "use strict"
-    
+
 /* 0. Proloder */
   $(window).on('load', function () {
     $('#preloader-active').delay(450).fadeOut('slow');
@@ -29,7 +29,7 @@
       }, 800);
       return false;
     });
-  
+
 /* 2. slick Nav */
 // mobile_menu
     var menu = $('ul#navigation');
@@ -40,7 +40,7 @@
         openedSymbol:'-'
       });
     };
-    
+
 
 //3. Search Toggle
     $("#search_input_box").hide();
@@ -70,10 +70,10 @@
 
     BasicSlider.slick({
       autoplay: true,
-      autoplaySpeed: 4000,
+      autoplaySpeed: 2000,
       dots: false,
       fade: true,
-      arrows: true, 
+      arrows: true,
       prevArrow: '<button type="button" class="slick-prev"><i class="ti-angle-left"></i></button>',
       nextArrow: '<button type="button" class="slick-next"><i class="ti-angle-right"></i></button>',
       responsive: [{
@@ -89,7 +89,8 @@
           settings: {
             slidesToShow: 1,
             slidesToScroll: 1,
-            arrows: true
+            arrows: true,
+              infinite: true,
           }
         },
         {
@@ -97,7 +98,8 @@
           settings: {
             slidesToShow: 1,
             slidesToScroll: 1,
-            arrows: false
+            arrows: false,
+              infinite: true,
           }
         }
       ]
@@ -297,7 +299,7 @@
 /* 10. WOW active */
     new WOW().init();
 
-// 11. ---- Mailchimp js --------//  
+// 11. ---- Mailchimp js --------//
     function mailChimp() {
       $('#mc_embed_signup').find('form').ajaxChimp();
     }

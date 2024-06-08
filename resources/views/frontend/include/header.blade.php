@@ -1,6 +1,7 @@
 
 @php
     $categories = App\Models\Category::all();
+    $subcategories=\App\Models\Subcategory::where('category_id','2')->latest()->take(6)->get();
     $cart = Session::get('cart', []);
     $wishlist = Session::get('wishlist', []);
     $compare = Session::get('compare', []);
@@ -43,19 +44,25 @@
                 <div class="menu-wrapper">
 
                     <div class="logo mb-2 mb-lg-0">
-                        <a href="{{ route('home') }}"><img src="{{ asset('frontend/assets/img/logo/logo.png') }}" width="100px"></a>
+                        <a href="{{ route('home') }}"><img src="{{ asset('frontend/assets/img/logo/logo.jpg') }}" width="100px"></a>
                     </div>
 
                     <div class="main-menu d-none d-lg-block">
                         <nav>
                             <ul id="navigation">
                                 <li><a href="{{ route('home') }}">Home</a></li>
-                                <li><a href="categories.html">Shirt</a></li>
-                                <li><a href="categories.html">Punjabi</a></li>
-                                <li class="new"><a href="categories.html">Payjama</a></li>
-                                <li><a href="contact.html">Pant</a></li>
-                                <li><a href="contact.html">Fotua</a></li>
-                                <li><a href="contact.html">Kotua</a></li>
+                                @if(isset($subcategories))
+                                    @foreach($subcategories as $key=>$subcategory)
+                                        <li><a href="{{ route('product.category',['id'=>2,'subid'=>$subcategory->id]) }}">{{$subcategory->name}}</a></li>
+                                    @endforeach
+                                @endif
+{{--                                <li>--}}
+{{--                                </li>--}}
+{{--                                <li><a href="categories.html">Punjabi</a></li>--}}
+{{--                                <li class="new"><a href="categories.html">Payjama</a></li>--}}
+{{--                                <li><a href="contact.html">Pant</a></li>--}}
+{{--                                <li><a href="contact.html">Fotua</a></li>--}}
+{{--                                <li><a href="contact.html">Kotua</a></li>--}}
                             </ul>
                         </nav>
                     </div>

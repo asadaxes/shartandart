@@ -11,7 +11,7 @@
 
                                 <div class="footer-logo mb-35">
                                     <a href="{{ route('home') }}"><img
-                                            src="{{ asset('frontend/assets/img/logo/logo.png') }}"
+                                            src="{{ asset('frontend/assets/img/logo/logo.jpg') }}"
                                             width="150px"></a>
                                 </div>
                             </div>
@@ -48,6 +48,7 @@
                             <div class="footer-tittle">
                                 <h4>Company</h4>
                                 <ul>
+                                    <li class="primary"><a href="https://api.whatsapp.com/send?phone=8801911603365"><i class="fa-brands fa-square-whatsapp"></i>Whatsapp</a></li>
                                     <li><a href="#">About Us</a></li>
                                     <li><a href="#">Contact Us</a></li>
                                     <li><a href="#">Intellectual Property</a></li>
@@ -60,11 +61,10 @@
                             <div class="footer-tittle">
                                 <h4>Service Center</h4>
                                 <ul>
-                                    <li><a href="#"><i class="fas fa-phone"></i> +8801234567890</a></li>
-                                    <li style="width: max-content;"><a href="#"><i class="fas fa-envelope"></i>
-                                            support@shirtandart.com</a></li>
-                                    <li><a href="#"><i class="fas fa-location-dot"></i> Shop no 1. Lorem ipsum dolor sit
-                                            amet adipisicing elit.</a></li>
+                                    <li><a href="tel:+8801756643416"><i class="fas fa-phone"></i> +8801756643416</a></li>
+                                    <li style="width: max-content;"><a href="mailto:achintakumar01911@gmail.com"><i class="fas fa-envelope"></i>
+                                            achintakumar01911@gmail.com</a></li>
+                                    <li><a href="#"><i class="fas fa-location-dot"></i> 75-76, BS Bhaban (Ground Fioor) Shop #38 , New Elephant Road, Dhaka- 1205.</a></li>
                                     <li>
                                         <div class="footer-social">
                                             <a href="#"><i class="fab fa-facebook fa-lg"></i></a>
